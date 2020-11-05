@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tts</groupId>
-	<artifactId>ecommercepage</artifactId>
+	<artifactId>ecommerce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ecommercepage</name>
+	<name>ecommerce</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -70,6 +70,11 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+  			<groupId>com.stripe</groupId>
+ 			 <artifactId>stripe-java</artifactId>
+  			<version>20.24.0</version>
 		</dependency>
 	</dependencies>
 
