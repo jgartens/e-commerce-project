@@ -1,14 +1,10 @@
 <!DOCTYPE HTML>
   <html xmlns:th="http://www.thymeleaf.org" lang="en">
-  
   <head th:replace="fragments/fragments :: head"></head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <body>
-
-  
-<div th:replace="fragments/fragments :: navbar"></div>
+  <div th:replace="fragments/fragments :: navbar" ></div>
+ 
   <main role="main">
-
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
           <div class="container">
@@ -20,46 +16,20 @@
  
       <div class="container">
           <div class="row">
-            <div class="card" style="width: 16rem;">
-                <img src="https://cdn.cultofmac.com/wp-content/uploads/2020/01/3280FCA5-20CA-49C2-B7E7-721CC04A54E9.jpeg" class="card-img-top" alt="iPhone 12">
-                <div class="card-body">
-                  <h5 class="card-title">iPhone 12</h5>
-                  <p class="card-text">With even more designed obsolescence!</p>
-                  <a href="https://www.apple.com/iphone-12-pro/" class="btn btn-primary">Check it</a>
-                </div>
-              </div>
-            <div class="card" style="width: 16rem;">
-                <img src="https://cdn.cultofmac.com/wp-content/uploads/2020/01/3280FCA5-20CA-49C2-B7E7-721CC04A54E9.jpeg" class="card-img-top" alt="iPhone 12">
-                <div class="card-body">
-                  <h5 class="card-title">iPhone 12</h5>
-                  <p class="card-text">With even more designed obsolescence!</p>
-                  <a href="https://www.apple.com/iphone-12-pro/" class="btn btn-primary">Check it</a>
-                </div>
-              </div>
-            <div class="card" style="width: 16rem;">
-                <img src="https://cdn.cultofmac.com/wp-content/uploads/2020/01/3280FCA5-20CA-49C2-B7E7-721CC04A54E9.jpeg" class="card-img-top" alt="iPhone 12">
-                <div class="card-body">
-                  <h5 class="card-title">iPhone 12</h5>
-                  <p class="card-text">With even more designed obsolescence!</p>
-                  <a href="https://www.apple.com/iphone-12-pro/" class="btn btn-primary">Check it</a>
-                </div>
-              </div>
-            <div class="card" style="width: 16rem;">
-                <img src="https://cdn.cultofmac.com/wp-content/uploads/2020/01/3280FCA5-20CA-49C2-B7E7-721CC04A54E9.jpeg" class="card-img-top" alt="iPhone 12">
-                <div class="card-body">
-                  <h5 class="card-title">iPhone 12</h5>
-                  <p class="card-text">With even more designed obsolescence!</p>
-                  <a href="https://www.apple.com/iphone-12-pro/" class="btn btn-primary">Check it</a>
-                </div>
-              </div>
-          </div>
-      </div>
+       		 <div class="card col-md-3 small-product-card"  th:each="product:${products}">
+                    <a  th:href="@{/product/{id}(id=${product.getId()})}"><img th:alt="${product.name}" th:src="@{${product.image}}" class="card-img"/></a>
+                    <div class="card-body">
+                    	<div class="card-title">
+                        	<h4 th:text="${product.name}"></h4>
+                        	<small th:text="${product.getBrand()}"></small>
+                    	</div>
+                	</div>    
+        		</div>
+    		</div>
+  		</div>
   </main>
  
   <footer th:replace="fragments/fragments :: footer"></footer>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
   </html>
 

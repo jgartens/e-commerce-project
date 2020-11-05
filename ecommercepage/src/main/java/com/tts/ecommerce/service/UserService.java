@@ -2,7 +2,7 @@ package com.tts.ecommerce.service;
 
 import java.util.Map;
 
-import com.tts.ecommerce.models.Product;
+import com.stripe.model.Product;
 import com.tts.ecommerce.models.User;
 import com.tts.ecommerce.repositories.UserRepository;
 
@@ -14,21 +14,23 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 public class UserService implements UserDetailsService {
-
+   
+	@Autowired
+    private UserRepository userRepository;
     @Autowired
-          private UserRepository userRepository;
-    @Autowired
-          private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public User findByUsername(String username){
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public void saveNew(User user){
+    public void saveNew(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-              userRepository.save(user);
+        userRepository.save(user);
     }
 
     public void saveExisting(User user) {
@@ -39,17 +41,16 @@ public class UserService implements UserDetailsService {
         return findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
-    public void updateCart(Map<Product, Integer> cart) {
+    public void updateCart(Map<com.tts.ecommerce.models.Product, Integer> map) {
         User user = getLoggedInUser();
-        user.setCart(cart);
+        user.setCart(map);
         saveExisting(user);
     }
 
-    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+        User user = findByUsername(username);
+        if(user == null) throw new UsernameNotFoundException("Username not found.");
+        return user;
     }
-    
 }
